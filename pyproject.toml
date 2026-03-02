@@ -1,0 +1,51 @@
+[project]
+name = "bussdcc-hardware"
+dynamic = [
+    "version",
+]
+dependencies = [
+    "bussdcc==0.26.0",
+]
+description = "bussdcc-hardware"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Joshua B. Bussdieker", email = "jbussdieker@gmail.com" },
+]
+maintainers = [
+    { name = "Joshua B. Bussdieker", email = "jbussdieker@gmail.com" },
+]
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Typing :: Typed",
+]
+keywords = [
+    "hardware",
+]
+license = "MIT"
+
+[project.optional-dependencies]
+dev = []
+
+[project.urls]
+Homepage = "https://github.com/jbussdieker/bussdcc-hardware"
+Documentation = "https://github.com/jbussdieker/bussdcc-hardware/blob/main/README.md"
+Repository = "https://github.com/jbussdieker/bussdcc-hardware"
+Issues = "https://github.com/jbussdieker/bussdcc-hardware/issues"
+Changelog = "https://github.com/jbussdieker/bussdcc-hardware/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = [
+    "setuptools",
+    "setuptools-scm",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
