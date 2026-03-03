@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.3.0...v0.4.0) (2026-03-03)
+
+
+### Features
+
+* **ds18b20:** add DS18B20 temperature sensor support ([f5c567b](https://github.com/jbussdieker/bussdcc-hardware/commit/f5c567b7aacf3d9eb92f156e3f04aae5c8f9c798))
+* **usb_camera:** add support for USB camera integration ([a321d8a](https://github.com/jbussdieker/bussdcc-hardware/commit/a321d8a5fd34eef1d50ec74bffcbfa0d09eddd7d))
+
 ## [0.3.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.2.0...v0.3.0) (2026-03-03)
 
 
