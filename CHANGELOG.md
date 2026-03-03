@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.1.0...v0.2.0) (2026-03-03)
+
+
+### Features
+
+* **pump:** add Pump device support ([2858dfb](https://github.com/jbussdieker/bussdcc-hardware/commit/2858dfb41426a8ecdd1394a5b6b2924b797944ce))
+
 ## 0.1.0 (2026-03-02)
 
 
