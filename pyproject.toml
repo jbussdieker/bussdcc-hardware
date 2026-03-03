@@ -35,6 +35,7 @@ license = "MIT"
 [project.optional-dependencies]
 nau7802 = ["nau7802[i2c]==0.5.4"]
 pump = ["types.RPi.GPIO"]
+usb_camera = ["opencv-python-headless"]
 
 [project.urls]
 Homepage = "https://github.com/jbussdieker/bussdcc-hardware"
