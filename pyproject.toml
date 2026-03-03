@@ -4,7 +4,7 @@ dynamic = [
     "version",
 ]
 dependencies = [
-    "bussdcc==0.26.0",
+    "bussdcc==0.27.0",
 ]
 description = "Hardware device integrations for the BussDCC cybernetic runtime"
 readme = "README.md"
@@ -34,6 +34,7 @@ license = "MIT"
 
 [project.optional-dependencies]
 nau7802 = ["nau7802[i2c]==0.5.4"]
+pump = ["types.RPi.GPIO"]
 
 [project.urls]
 Homepage = "https://github.com/jbussdieker/bussdcc-hardware"
