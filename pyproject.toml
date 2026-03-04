@@ -33,6 +33,7 @@ keywords = [
 license = "MIT"
 
 [project.entry-points."bussdcc.bus"]
+gpio = "bussdcc_hardware.bus.gpio.GPIO"
 i2c = "bussdcc_hardware.bus.i2c.I2CBus"
 video = "bussdcc_hardware.bus.video.VideoBus"
 w1 = "bussdcc_hardware.bus.w1.W1Bus"
@@ -41,6 +42,7 @@ w1 = "bussdcc_hardware.bus.w1.W1Bus"
 ds18b20 = "bussdcc_hardware.device.ds18b20.DS18B20"
 nau7802 = "bussdcc_hardware.device.nau7802.NAU7802"
 pump = "bussdcc_hardware.device.pump.Pump"
+relay = "bussdcc_hardware.device.relay.Relay"
 usb_camera = "bussdcc_hardware.device.usb_camera.USBCamera"
 
 [project.optional-dependencies]

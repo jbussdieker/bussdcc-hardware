@@ -1,27 +1,38 @@
-from typing import Optional
+from pathlib import Path
 
 from bussdcc.device import Device
+
+from ...bus.w1 import W1Bus
 
 
 class DS18B20(Device):
     kind = "temperature"
 
-    def __init__(self, *, id: str, uid: str) -> None:
+    def __init__(self, *, id: str, bus_id: str, device_id: str):
         super().__init__(id=id)
-        self._uid = uid
+        self.bus_id = bus_id
+        self.device_id = device_id
+        self._device_path: Path | None = None
 
     def connect(self) -> None:
-        pass
+        if not self.ctx:
+            raise RuntimeError("Device not attached")
 
-    def _read_file(self, path: str) -> Optional[str]:
+        bus = self.ctx.runtime.get_device(self.bus_id)
+        if not isinstance(bus, W1Bus):
+            raise RuntimeError("Failed to find W1Bus")
+
+        self._device_path = bus.device_path(self.device_id)
+
+    def read(self) -> float | None:
+        if not self._device_path:
+            return None
+
+        temp_file = self._device_path / "temperature"
+
         try:
-            with open(path, "r") as f:
-                return f.read().strip("\x00").strip()
-        except Exception:
+            value = temp_file.read_text().strip()
+        except FileNotFoundError:
             return None
 
-    def get_temperature(self) -> Optional[float]:
-        temp_string = self._read_file(f"/sys/bus/w1/devices/{self._uid}/temperature")
-        if temp_string is None:
-            return None
-        return float(temp_string) / 1000
+        return float(value) / 1000
