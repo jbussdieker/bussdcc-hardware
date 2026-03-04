@@ -7,7 +7,7 @@ from bussdcc.message import DeviceFailed
 from nau7802 import NAU7802 as _NAU7802
 from nau7802.protocol import BusProtocol
 
-from ..i2c_bus import I2CBus
+from ...bus.i2c import I2CBus
 
 
 class NAU7802(Device):
