@@ -1,4 +1,4 @@
-from typing import cast, Literal
+from typing import Literal, Optional, Any
 import threading
 import time
 
@@ -13,10 +13,11 @@ from ...bus.i2c import I2CBus
 class NAU7802(Device):
     kind = "adc"
 
-    def __init__(self, *, id: str, bus_id: str, addr: int = 0x2A):
-        super().__init__(id=id)
-        self.bus_id = bus_id
-        self.addr = addr
+    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+        super().__init__(id=id, config=config)
+
+        self.bus_id = self.config["bus_id"]
+        self.addr = self.config.get("addr", 0x2A)
         self._current_channel: int | None = None
         self._lock = threading.Lock()
 

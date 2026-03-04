@@ -1,5 +1,5 @@
+from typing import Iterable, Optional, Any
 from pathlib import Path
-from typing import Iterable
 
 from bussdcc.device import Device
 
@@ -7,9 +7,9 @@ from bussdcc.device import Device
 class W1Bus(Device):
     kind = "bus"
 
-    def __init__(self, *, id: str, base_path: str = "/sys/bus/w1/devices"):
-        super().__init__(id=id)
-        self.base_path = Path(base_path)
+    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+        super().__init__(id=id, config=config)
+        self.base_path = Path(self.config.get("base_path", "/sys/bus/w1/devices"))
 
     def connect(self) -> None:
         if not self.base_path.exists():
@@ -26,4 +26,4 @@ class W1Bus(Device):
         ]
 
     def device_path(self, device_id: str) -> Path:
-        return self.base_path / device_id
+        return Path(self.base_path / device_id)

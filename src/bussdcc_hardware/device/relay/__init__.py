@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any
 import time
 
 from bussdcc.device import Device
@@ -9,11 +9,11 @@ from ...bus.gpio import GPIO, GPIOProtocol
 class Relay(Device):
     kind = "relay"
 
-    def __init__(self, *, id: str, gpio_id: str, pin: int, active_low: bool = False):
-        super().__init__(id=id)
-        self.gpio_id = gpio_id
-        self.pin = pin
-        self.active_low = active_low
+    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+        super().__init__(id=id, config=config)
+        self.gpio_id = self.config["gpio_id"]
+        self.pin = int(self.config["pin"])
+        self.active_low = self.config.get("active_low", False)
         self._GPIO: GPIOProtocol
 
     def connect(self) -> None:

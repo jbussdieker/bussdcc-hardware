@@ -1,3 +1,4 @@
+from typing import Optional, Any
 from pathlib import Path
 
 from bussdcc.device import Device
@@ -8,10 +9,11 @@ from ...bus.w1 import W1Bus
 class DS18B20(Device):
     kind = "temperature"
 
-    def __init__(self, *, id: str, bus_id: str, device_id: str):
-        super().__init__(id=id)
-        self.bus_id = bus_id
-        self.device_id = device_id
+    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+        super().__init__(id=id, config=config)
+
+        self.bus_id = self.config["bus_id"]
+        self.device_id = self.config["device_id"]
         self._device_path: Path | None = None
 
     def connect(self) -> None:

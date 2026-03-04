@@ -1,3 +1,4 @@
+from typing import Optional, Any
 from bussdcc.device import Device
 
 try:
@@ -11,9 +12,9 @@ except ModuleNotFoundError:
 class Pump(Device):
     kind = "actuator"
 
-    def __init__(self, *, id: str, pin: int):
-        super().__init__(id=id)
-        self.pin = pin
+    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+        super().__init__(id=id, config=config)
+        self.pin = int(self.config["pin"])
         self._state = False
 
     @property

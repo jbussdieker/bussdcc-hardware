@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 import threading
 
 import cv2
@@ -12,11 +12,12 @@ class USBCamera(Device):
     MAX_CONSECUTIVE_FAILURES = 3
 
     def __init__(self, *, id: str, config: dict[str, Any]):
-        super().__init__(id=id)
+        super().__init__(id=id, config=config)
         self._lock = threading.Lock()
         self._consecutive_failures = 0
         self.cap: cv2.VideoCapture | None = None
         self.desired_config = (config or {}).copy()
+        self.device_index = int(self.config.get("device_index", 0))
 
     def _str_to_fourcc(self, val: str) -> int:
         if val == "AUTO":
@@ -145,14 +146,14 @@ class USBCamera(Device):
         with self._lock:
             self.desired_config.update(new_config)
             if self.cap and self.cap.isOpened():
-                if "format" in new_config or "index" in new_config:
+                if "format" in new_config:
                     self.cap.release()
                     self.connect()
                 else:
                     self._apply_config()
 
     def connect(self) -> None:
-        self.cap = cv2.VideoCapture(self.desired_config["index"])
+        self.cap = cv2.VideoCapture(self.device_index)
         if not self.cap.isOpened():
             raise RuntimeError("Camera not available")
 

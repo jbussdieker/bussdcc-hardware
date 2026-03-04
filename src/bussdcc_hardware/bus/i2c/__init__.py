@@ -1,4 +1,4 @@
-from typing import Iterable, cast
+from typing import Iterable, cast, Optional, Any
 import smbus2
 
 from nau7802.protocol import BusProtocol
@@ -9,10 +9,11 @@ from bussdcc.device import Device
 class I2CBus(Device):
     kind = "bus"
 
-    def __init__(self, *, id: str, bus: int = 1):
-        self.bus_num = bus
+    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+        super().__init__(id=id, config=config)
+
+        self.bus_num = self.config.get("bus", 1)
         self._bus: smbus2.SMBus | None = None
-        super().__init__(id=id)
 
     def connect(self) -> None:
         self._bus = smbus2.SMBus(self.bus_num)
