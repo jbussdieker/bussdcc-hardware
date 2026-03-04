@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.6.0...v0.7.0) (2026-03-04)
+
+
+### Features
+
+* **device, bus:** update initialization to use config dictionaries ([5d56ba5](https://github.com/jbussdieker/bussdcc-hardware/commit/5d56ba5d0396a0e3a54a1bcd444cd91f27e8a48a))
+
 ## [0.6.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.5.0...v0.6.0) (2026-03-04)
 
 
