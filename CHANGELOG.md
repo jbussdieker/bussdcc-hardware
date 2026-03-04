@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.7.0...v0.8.0) (2026-03-04)
+
+
+### Features
+
+* **pyproject:** update dependencies and entry points ([c8ffeb7](https://github.com/jbussdieker/bussdcc-hardware/commit/c8ffeb7f3853daad193756d8bb7ab90a1aa7be5b))
+
 ## [0.7.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.6.0...v0.7.0) (2026-03-04)
 
 
