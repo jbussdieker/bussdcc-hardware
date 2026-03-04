@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.4.0...v0.5.0) (2026-03-04)
+
+
+### Features
+
+* **pyproject:** add entry points for hardware components ([303804f](https://github.com/jbussdieker/bussdcc-hardware/commit/303804f25cc5ec4be0361108a89a07d326139000))
+
 ## [0.4.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.3.0...v0.4.0) (2026-03-03)
 
 
