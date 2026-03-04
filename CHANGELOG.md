@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.5.0...v0.6.0) (2026-03-04)
+
+
+### Features
+
+* **bus, device:** add VideoBus and W1Bus support ([9c03d48](https://github.com/jbussdieker/bussdcc-hardware/commit/9c03d48c73d2c64199a5b8eb09f1ae48f7092975))
+* **gpio, relay, ds18b20:** add GPIO bus and relay device support ([a6858b2](https://github.com/jbussdieker/bussdcc-hardware/commit/a6858b2e96aa6d13d65806efa25cd0bf75b85133))
+
 ## [0.5.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.4.0...v0.5.0) (2026-03-04)
 
 
