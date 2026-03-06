@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.2](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.10.1...v0.10.2) (2026-03-06)
+
+
+### Bug Fixes
+
+* **pyproject:** update bussdcc dependency to v0.32.2 ([8c5604c](https://github.com/jbussdieker/bussdcc-hardware/commit/8c5604c2d81fa0d20085fe2e356731ccc8114356))
+
 ## [0.10.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.10.0...v0.10.1) (2026-03-06)
 
 
