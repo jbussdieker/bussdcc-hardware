@@ -4,7 +4,7 @@ dynamic = [
     "version",
 ]
 dependencies = [
-    "bussdcc==0.33.1",
+    "bussdcc==0.34.0",
 ]
 description = "Hardware device integrations for the BussDCC cybernetic runtime"
 readme = "README.md"
@@ -47,7 +47,7 @@ usb_camera = "bussdcc_hardware.device.usb_camera:USBCamera"
 
 [project.optional-dependencies]
 dev = ["mypy"]
-nau7802 = ["nau7802[i2c]==0.5.4"]
+nau7802 = ["nau7802[i2c]==0.6.0"]
 pump = ["types.RPi.GPIO"]
 usb_camera = ["opencv-python-headless"]
 video_bus = ["cv2-enumerate-cameras"]

@@ -5,7 +5,7 @@ import time
 from bussdcc.device import Device
 from bussdcc.message import DeviceFailed
 from nau7802 import NAU7802 as _NAU7802
-from nau7802.protocol import BusProtocol
+from typed_registers import SMBusRegisterBus
 
 from ...bus.i2c import I2CBus
 
@@ -26,14 +26,14 @@ class NAU7802(Device):
             raise RuntimeError("Device not attached")
 
         runtime = self.ctx.runtime
-        bus = runtime.get_device(self.bus_id)
+        bus = runtime.devices.get(self.bus_id)
 
         if not isinstance(bus, I2CBus):
             raise RuntimeError("NAU7802 requires an I2CBus")
 
         self.bus: I2CBus = bus
 
-        protocol: BusProtocol | None = bus.protocol()
+        protocol: SMBusRegisterBus | None = bus.protocol()
 
         if protocol:
             self.device = _NAU7802(protocol, self.addr)

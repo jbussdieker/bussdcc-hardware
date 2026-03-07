@@ -20,7 +20,7 @@ class Relay(Device):
         if not self.ctx:
             raise RuntimeError("Device not attached")
 
-        gpio = self.ctx.runtime.get_device(self.gpio_id)
+        gpio = self.ctx.runtime.devices.get(self.gpio_id)
         if not isinstance(gpio, GPIO):
             raise RuntimeError("Failed to find GPIO bus")
 

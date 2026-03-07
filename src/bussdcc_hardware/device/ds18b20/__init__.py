@@ -20,7 +20,7 @@ class DS18B20(Device):
         if not self.ctx:
             raise RuntimeError("Device not attached")
 
-        bus = self.ctx.runtime.get_device(self.bus_id)
+        bus = self.ctx.runtime.devices.get(self.bus_id)
         if not isinstance(bus, W1Bus):
             raise RuntimeError("Failed to find W1Bus")
 

@@ -1,7 +1,7 @@
 from typing import Iterable, cast, Optional, Any
 import smbus2
 
-from nau7802.protocol import BusProtocol
+from typed_registers import SMBusRegisterBus
 
 from bussdcc.device import Device
 
@@ -23,11 +23,11 @@ class I2CBus(Device):
             self._bus.close()
             self._bus = None
 
-    def protocol(self) -> BusProtocol | None:
+    def protocol(self) -> SMBusRegisterBus | None:
         if not self._bus:
             return None
 
-        return cast(BusProtocol, self._bus)
+        return cast(SMBusRegisterBus, self._bus)
 
     def discover(self) -> Iterable[int]:
         if not self._bus:
