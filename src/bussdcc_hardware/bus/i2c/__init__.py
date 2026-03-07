@@ -1,4 +1,4 @@
-from typing import Iterable, cast, Optional, Any
+from typing import Iterable, Optional, Any
 import smbus2
 
 from typed_registers import SMBusRegisterBus
@@ -23,11 +23,11 @@ class I2CBus(Device):
             self._bus.close()
             self._bus = None
 
-    def protocol(self) -> SMBusRegisterBus | None:
+    def protocol(self) -> Optional[SMBusRegisterBus]:
         if not self._bus:
             return None
 
-        return cast(SMBusRegisterBus, self._bus)
+        return SMBusRegisterBus(self._bus)
 
     def discover(self) -> Iterable[int]:
         if not self._bus:
