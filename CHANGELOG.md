@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.12.0...v0.12.1) (2026-03-07)
+
+
+### Bug Fixes
+
+* **i2c:** return proper interface ([505596a](https://github.com/jbussdieker/bussdcc-hardware/commit/505596a27a3d995d16f8df27169e031183b1b4bc))
+
 ## [0.12.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.11.0...v0.12.0) (2026-03-07)
 
 
