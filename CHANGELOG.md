@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.11.0...v0.12.0) (2026-03-07)
+
+
+### Features
+
+* **pyproject, i2c, ds18b20, nau7802, relay:** update dependencies and refactor device access ([2062297](https://github.com/jbussdieker/bussdcc-hardware/commit/2062297776cfff0387b3387d1e16c5aed5cd0ab2))
+
+
+### Bug Fixes
+
+* **pyproject:** update bussdcc dependency to v0.33.1 ([a4c386a](https://github.com/jbussdieker/bussdcc-hardware/commit/a4c386a9ff242aa90b2024f2b185cdffa15aeda4))
+
 ## [0.11.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.10.2...v0.11.0) (2026-03-07)
 
 
