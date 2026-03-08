@@ -5,26 +5,25 @@ from bussdcc.device import Device
 
 from ...bus.w1 import W1Bus
 
+from .config import DS18B20Config
 
-class DS18B20(Device):
+
+class DS18B20(Device[DS18B20Config]):
     kind = "temperature"
 
-    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+    def __init__(self, *, id: str, config: DS18B20Config):
         super().__init__(id=id, config=config)
-
-        self.bus_id = self.config["bus_id"]
-        self.device_id = self.config["device_id"]
         self._device_path: Path | None = None
 
     def connect(self) -> None:
         if not self.ctx:
             raise RuntimeError("Device not attached")
 
-        bus = self.ctx.runtime.devices.get(self.bus_id)
+        bus = self.ctx.runtime.devices.get(self.config.bus_id)
         if not isinstance(bus, W1Bus):
             raise RuntimeError("Failed to find W1Bus")
 
-        self._device_path = bus.device_path(self.device_id)
+        self._device_path = bus.device_path(self.config.device_id)
 
     def read(self) -> float | None:
         if not self._device_path:

@@ -3,13 +3,15 @@ from pathlib import Path
 
 from bussdcc.device import Device
 
+from .config import W1BusConfig
 
-class W1Bus(Device):
+
+class W1Bus(Device[W1BusConfig]):
     kind = "bus"
 
-    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+    def __init__(self, *, id: str, config: W1BusConfig):
         super().__init__(id=id, config=config)
-        self.base_path = Path(self.config.get("base_path", "/sys/bus/w1/devices"))
+        self.base_path = Path(config.base_path)
 
     def connect(self) -> None:
         if not self.base_path.exists():

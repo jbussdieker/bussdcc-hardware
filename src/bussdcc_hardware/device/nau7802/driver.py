@@ -9,15 +9,14 @@ from typed_registers import SMBusRegisterBus
 
 from ...bus.i2c import I2CBus
 
+from .config import NAU7802Config
 
-class NAU7802(Device):
+
+class NAU7802(Device[NAU7802Config]):
     kind = "adc"
 
-    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+    def __init__(self, *, id: str, config: NAU7802Config):
         super().__init__(id=id, config=config)
-
-        self.bus_id = self.config["bus_id"]
-        self.addr = self.config.get("addr", 0x2A)
         self._current_channel: int | None = None
         self._lock = threading.Lock()
 
@@ -26,7 +25,7 @@ class NAU7802(Device):
             raise RuntimeError("Device not attached")
 
         runtime = self.ctx.runtime
-        bus = runtime.devices.get(self.bus_id)
+        bus = runtime.devices.get(self.config.bus_id)
 
         if not isinstance(bus, I2CBus):
             raise RuntimeError("NAU7802 requires an I2CBus")
@@ -36,7 +35,7 @@ class NAU7802(Device):
         protocol: SMBusRegisterBus | None = bus.protocol()
 
         if protocol:
-            self.device = _NAU7802(protocol, self.addr)
+            self.device = _NAU7802(protocol, self.config.addr)
 
         with self._lock:
             self.device.initialize()

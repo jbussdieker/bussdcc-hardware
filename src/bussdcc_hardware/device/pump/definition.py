@@ -1,14 +1,9 @@
-from dataclasses import dataclass
-from typing import Type
+from bussdcc.device.definition import DeviceDefinition
 
 from .config import PumpConfig
 from .driver import Pump
 
-
-@dataclass(slots=True, frozen=True)
-class PumpDefinition:
-    config_class: Type[PumpConfig] = PumpConfig
-    driver_class: Type[Pump] = Pump
-
-
-definition = PumpDefinition()
+definition = DeviceDefinition(
+    config_class=PumpConfig,
+    driver_class=Pump,
+)

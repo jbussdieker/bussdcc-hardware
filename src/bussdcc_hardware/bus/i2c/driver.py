@@ -6,18 +6,18 @@ from typed_registers import SMBusRegisterBus
 
 from bussdcc.device import Device
 
+from .config import I2CBusConfig
 
-class I2CBus(Device):
+
+class I2CBus(Device[I2CBusConfig]):
     kind = "bus"
 
-    def __init__(self, *, id: str, config: Optional[dict[str, Any]] = None):
+    def __init__(self, *, id: str, config: I2CBusConfig):
         super().__init__(id=id, config=config)
-
-        self.bus_num = self.config.get("bus", 1)
         self._bus: smbus2.SMBus | None = None
 
     def connect(self) -> None:
-        self._bus = smbus2.SMBus(self.bus_num)
+        self._bus = smbus2.SMBus(self.config.bus)
 
     def disconnect(self) -> None:
         if self._bus:

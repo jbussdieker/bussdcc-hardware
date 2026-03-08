@@ -5,19 +5,19 @@ import cv2
 
 from bussdcc.device import Device
 
+from .config import USBCameraConfig
 
-class USBCamera(Device):
+
+class USBCamera(Device[USBCameraConfig]):
     kind = "camera"
 
     MAX_CONSECUTIVE_FAILURES = 3
 
-    def __init__(self, *, id: str, config: dict[str, Any]):
+    def __init__(self, *, id: str, config: USBCameraConfig):
         super().__init__(id=id, config=config)
         self._lock = threading.Lock()
         self._consecutive_failures = 0
         self.cap: cv2.VideoCapture | None = None
-        self.desired_config = (config or {}).copy()
-        self.device_index = int(self.config.get("device_index", 0))
 
     def _str_to_fourcc(self, val: str) -> int:
         if val == "AUTO":
@@ -58,48 +58,50 @@ class USBCamera(Device):
         if self.cap is None:
             return
 
-        cfg = self.desired_config
         backend = self.get_backend_name()
 
-        fmt = self._str_to_fourcc(cfg["format"])
+        fmt = self._str_to_fourcc(self.config.format)
         self.cap.set(cv2.CAP_PROP_FOURCC, fmt)
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, cfg["width"])
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, cfg["height"])
-        self.cap.set(cv2.CAP_PROP_FPS, cfg["fps"])
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.config.width)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.config.height)
+        self.cap.set(cv2.CAP_PROP_FPS, self.config.fps)
         self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
-        auto_focus = cfg.get("auto_focus", True)
-        if auto_focus:
+        if self.config.auto_focus:
             self.cap.set(cv2.CAP_PROP_AUTOFOCUS, 1.0)
         else:
             self.cap.set(cv2.CAP_PROP_AUTOFOCUS, 0.0)
-            self.cap.set(cv2.CAP_PROP_FOCUS, cfg["focus"])
+            self.cap.set(cv2.CAP_PROP_FOCUS, self.config.focus)
 
-        auto_wb = cfg.get("auto_white_balance", True)
-        if auto_wb:
+        if self.config.auto_white_balance:
             self.cap.set(cv2.CAP_PROP_AUTO_WB, 1.0)
         else:
             self.cap.set(cv2.CAP_PROP_AUTO_WB, 0.0)
-            self.cap.set(cv2.CAP_PROP_WB_TEMPERATURE, cfg["white_balance_temperature"])
+            self.cap.set(
+                cv2.CAP_PROP_WB_TEMPERATURE, self.config.white_balance_temperature
+            )
 
         # Exposure control
-        auto_exposure = cfg.get("auto_exposure", True)
         if backend == "V4L2":  # Linux
-            self.cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 3.0 if auto_exposure else 1.0)
-            if not auto_exposure and "exposure" in cfg:
-                self.cap.set(cv2.CAP_PROP_EXPOSURE, cfg["exposure"])
-                self.cap.set(cv2.CAP_PROP_GAIN, cfg["gain"])
+            self.cap.set(
+                cv2.CAP_PROP_AUTO_EXPOSURE, 3.0 if self.config.auto_exposure else 1.0
+            )
+            if not self.config.auto_exposure:
+                self.cap.set(cv2.CAP_PROP_EXPOSURE, self.config.exposure)
+                self.cap.set(cv2.CAP_PROP_GAIN, self.config.gain)
         elif backend == "AVFOUNDATION":  # macOS
             # AVFoundation sometimes ignores auto_exposure, so set exposure manually
-            if not auto_exposure and "exposure" in cfg:
-                self.cap.set(cv2.CAP_PROP_EXPOSURE, cfg["exposure"])
-                self.cap.set(cv2.CAP_PROP_GAIN, cfg["gain"])
+            if not self.config.auto_exposure:
+                self.cap.set(cv2.CAP_PROP_EXPOSURE, self.config.exposure)
+                self.cap.set(cv2.CAP_PROP_GAIN, self.config.gain)
         else:
             # Fallback for unknown backends
-            self.cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 3.0 if auto_exposure else 1.0)
-            if not auto_exposure and "exposure" in cfg:
-                self.cap.set(cv2.CAP_PROP_EXPOSURE, cfg["exposure"])
-                self.cap.set(cv2.CAP_PROP_GAIN, cfg["gain"])
+            self.cap.set(
+                cv2.CAP_PROP_AUTO_EXPOSURE, 3.0 if self.config.auto_exposure else 1.0
+            )
+            if not self.config.auto_exposure:
+                self.cap.set(cv2.CAP_PROP_EXPOSURE, self.config.exposure)
+                self.cap.set(cv2.CAP_PROP_GAIN, self.config.gain)
 
     def _maybe_recover(self) -> None:
         if self._consecutive_failures >= self.MAX_CONSECUTIVE_FAILURES:
@@ -121,39 +123,22 @@ class USBCamera(Device):
             return None
         return self.cap.getBackendName() or "UNKNOWN"
 
-    def get_config(self) -> dict[str, Any] | None:
-        if not self.cap or not self.cap.isOpened():
-            return None
-
-        return {
-            "desired": self.desired_config.copy(),
-            "reported": {
-                "format": self._fourcc_to_str(self.cap.get(cv2.CAP_PROP_FOURCC)),
-                "width": self.cap.get(cv2.CAP_PROP_FRAME_WIDTH),
-                "height": self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT),
-                "fps": self.cap.get(cv2.CAP_PROP_FPS),
-                "auto_exposure": self._get_exposure(),
-                "exposure": self.cap.get(cv2.CAP_PROP_EXPOSURE),
-                "gain": self.cap.get(cv2.CAP_PROP_GAIN),
-                "auto_white_balance": self.cap.get(cv2.CAP_PROP_AUTO_WB) == 1.0,
-                "white_balance_temperature": self.cap.get(cv2.CAP_PROP_WB_TEMPERATURE),
-                "auto_focus": self.cap.get(cv2.CAP_PROP_AUTOFOCUS) == 1.0,
-                "focus": self.cap.get(cv2.CAP_PROP_FOCUS),
-            },
-        }
-
-    def update_config(self, new_config: dict[str, Any]) -> None:
+    def update_config(self, new_config: USBCameraConfig) -> None:
         with self._lock:
-            self.desired_config.update(new_config)
+            reconnect = False
+            if self.config.format != new_config.format:
+                reconnect = True
+
+            self.config = new_config
             if self.cap and self.cap.isOpened():
-                if "format" in new_config:
+                if reconnect:
                     self.cap.release()
                     self.connect()
                 else:
                     self._apply_config()
 
     def connect(self) -> None:
-        self.cap = cv2.VideoCapture(self.device_index)
+        self.cap = cv2.VideoCapture(self.config.device_index)
         if not self.cap.isOpened():
             raise RuntimeError("Camera not available")
 
@@ -181,20 +166,8 @@ class USBCamera(Device):
         # success path
         self._consecutive_failures = 0
 
-        flip_v = self.desired_config.get("flip_vertical", False)
-        flip_h = self.desired_config.get("flip_horizontal", False)
-        if flip_v and flip_h:
-            frame = cv2.flip(frame, -1)  # both axes
-        elif flip_v:
-            frame = cv2.flip(frame, 0)  # vertical
-        elif flip_h:
-            frame = cv2.flip(frame, 1)  # horizontal
-
-        config = self.get_config() or {}
         metadata = {
             "time": self.ctx.clock.now_utc().isoformat() if self.ctx else None,
-            "backend": self.get_backend_name(),
-            **config,
         }
 
         return ret, frame, metadata
