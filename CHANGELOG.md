@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.13.0...v0.14.0) (2026-03-08)
+
+
+### Features
+
+* **bus, device:** refactor device definitions and enhance USB camera config ([29c18d2](https://github.com/jbussdieker/bussdcc-hardware/commit/29c18d2c2faceabc4214c2bccf8d744eb4b62a3e))
+
 ## [0.13.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.12.1...v0.13.0) (2026-03-08)
 
 
