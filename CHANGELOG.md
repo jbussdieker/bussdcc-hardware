@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.12.1...v0.13.0) (2026-03-08)
+
+
+### Features
+
+* **bus, device:** introduce bus and device definitions ([7619838](https://github.com/jbussdieker/bussdcc-hardware/commit/76198386eb28bb57f3ecc07cb679832a0d4cc6e7))
+
 ## [0.12.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.12.0...v0.12.1) (2026-03-07)
 
 
