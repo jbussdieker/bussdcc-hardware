@@ -33,24 +33,20 @@ keywords = [
 license = "MIT"
 
 [project.entry-points."bussdcc.bus"]
-gpio = "bussdcc_hardware.bus.gpio:GPIO"
-i2c = "bussdcc_hardware.bus.i2c:I2CBus"
-video = "bussdcc_hardware.bus.video:VideoBus"
-w1 = "bussdcc_hardware.bus.w1:W1Bus"
+i2c = "bussdcc_hardware.bus.i2c:definition"
+w1 = "bussdcc_hardware.bus.w1:definition"
 
 [project.entry-points."bussdcc.device"]
-ds18b20 = "bussdcc_hardware.device.ds18b20:DS18B20"
-nau7802 = "bussdcc_hardware.device.nau7802:NAU7802"
-pump = "bussdcc_hardware.device.pump:Pump"
-relay = "bussdcc_hardware.device.relay:Relay"
-usb_camera = "bussdcc_hardware.device.usb_camera:USBCamera"
+ds18b20 = "bussdcc_hardware.device.ds18b20:definition"
+nau7802 = "bussdcc_hardware.device.nau7802:definition"
+pump = "bussdcc_hardware.device.pump:definition"
+usb_camera = "bussdcc_hardware.device.usb_camera:definition"
 
 [project.optional-dependencies]
 dev = ["mypy"]
 nau7802 = ["nau7802[i2c]==0.6.0"]
 pump = ["types.RPi.GPIO"]
 usb_camera = ["opencv-python-headless"]
-video_bus = ["cv2-enumerate-cameras"]
 
 [project.urls]
 Homepage = "https://github.com/jbussdieker/bussdcc-hardware"

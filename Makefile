@@ -1,7 +1,7 @@
 .PHONY: setup check typecheck lint format clean
 
 setup: .venv/bin/python
-	.venv/bin/python -m pip install -e .[dev,nau7802,pump,usb_camera,video_bus]
+	.venv/bin/python -m pip install -e .[dev,nau7802,pump,usb_camera]
 check: typecheck lint
 typecheck: .venv/bin/mypy
 	.venv/bin/mypy --strict src
