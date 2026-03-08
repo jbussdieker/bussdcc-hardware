@@ -4,7 +4,7 @@ dynamic = [
     "version",
 ]
 dependencies = [
-    "bussdcc==0.35.0",
+    "bussdcc ~= 0.35.0",
 ]
 description = "Hardware device integrations for the BussDCC cybernetic runtime"
 readme = "README.md"
@@ -43,10 +43,13 @@ pump = "bussdcc_hardware.device.pump:definition"
 usb_camera = "bussdcc_hardware.device.usb_camera:definition"
 
 [project.optional-dependencies]
-dev = ["mypy"]
-nau7802 = ["nau7802[i2c]==0.6.0"]
-pump = ["types.RPi.GPIO"]
-usb_camera = ["opencv-python-headless"]
+dev = [
+    "mypy ~= 1.19.1",
+    "types.RPi.GPIO ~= 0.7.0",
+]
+nau7802 = ["nau7802[i2c] ~= 0.6.0"]
+pump = ["RPi.GPIO ~= 0.7.1"]
+usb_camera = ["opencv-python-headless ~= 4.13.0.92"]
 
 [project.urls]
 Homepage = "https://github.com/jbussdieker/bussdcc-hardware"
