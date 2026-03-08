@@ -7,5 +7,11 @@ class DeviceRegistry:
         self.devices = self._load_entry_points("bussdcc.device")
 
     def _load_entry_points(self, group: str) -> dict[str, object]:
+        result = {}
         eps = metadata.entry_points()
-        return {ep.name: ep.load() for ep in eps.select(group=group)}
+        for ep in eps.select(group=group):
+            try:
+                m = ep.load()
+                result[ep.name] = m
+            except ModuleNotFoundError:
+                pass
