@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.14.0...v0.14.1) (2026-03-08)
+
+
+### Bug Fixes
+
+* **dependencies:** update dependencies and modify Makefile ([30e8ed3](https://github.com/jbussdieker/bussdcc-hardware/commit/30e8ed369b3cf99e43464d169c32528c914c72d7))
+
 ## [0.14.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.13.0...v0.14.0) (2026-03-08)
 
 
