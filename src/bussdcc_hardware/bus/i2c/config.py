@@ -1,10 +1,18 @@
 from typing import Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass(slots=True)
 class I2CBusConfig:
-    bus: int = 1
+    bus: int = field(
+        default=1,
+        metadata={
+            "label": "I²C Bus Number",
+            "group": "Connection",
+            "ui": "number",
+            "min": 0,
+        },
+    )
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "I2CBusConfig":

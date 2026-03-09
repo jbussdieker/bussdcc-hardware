@@ -1,38 +1,147 @@
 from typing import Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass(slots=True)
 class USBCameraConfig:
-    device_index: int = 0
-    format: str = "MJPG"
-    width: int = 640
-    height: int = 480
-    fps: int = 30
+    device_index: int = field(
+        default=0,
+        metadata={
+            "label": "Camera Device Index",
+            "group": "Device",
+            "ui": "number",
+            "min": 0,
+            "max": 16,
+        },
+    )
 
-    auto_exposure: bool = True
-    exposure: float = 0.0
-    gain: float = 0.0
+    format: str = field(
+        default="MJPG",
+        metadata={
+            "label": "Pixel Format",
+            "group": "Video",
+            "ui": "select",
+        },
+    )
 
-    auto_focus: bool = True
-    focus: float = 0.0
+    width: int = field(
+        default=1280,
+        metadata={
+            "label": "Frame Width",
+            "group": "Video",
+            "ui": "number",
+            "min": 160,
+            "max": 3840,
+        },
+    )
 
-    auto_white_balance: bool = True
-    white_balance_temperature: float = 0.0
+    height: int = field(
+        default=720,
+        metadata={
+            "label": "Frame Height",
+            "group": "Video",
+            "ui": "number",
+            "min": 120,
+            "max": 2160,
+        },
+    )
+
+    fps: int = field(
+        default=30,
+        metadata={
+            "label": "Frames Per Second",
+            "group": "Video",
+            "ui": "number",
+            "min": 1,
+            "max": 120,
+        },
+    )
+
+    auto_exposure: bool = field(
+        default=True,
+        metadata={
+            "label": "Auto Exposure",
+            "group": "Exposure",
+        },
+    )
+
+    exposure: float = field(
+        default=-6.0,
+        metadata={
+            "label": "Exposure",
+            "group": "Exposure",
+            "ui": "number",
+            "min": -13.0,
+            "max": -1.0,
+            "step": 0.1,
+        },
+    )
+
+    gain: float = field(
+        default=1.0,
+        metadata={
+            "label": "Gain",
+            "group": "Exposure",
+            "help": "Amplification applied to the sensor signal",
+            "ui": "number",
+            "min": 0,
+            "max": 16,
+            "step": 0.1,
+        },
+    )
+
+    auto_focus: bool = field(
+        default=True,
+        metadata={
+            "label": "Auto Focus",
+            "group": "Focus",
+        },
+    )
+
+    focus: float = field(
+        default=0.0,
+        metadata={
+            "label": "Focus",
+            "group": "Focus",
+            "ui": "number",
+            "min": 0,
+            "max": 255,
+        },
+    )
+
+    auto_white_balance: bool = field(
+        default=True,
+        metadata={
+            "label": "Auto White Balance",
+            "group": "White Balance",
+        },
+    )
+
+    white_balance_temperature: float = field(
+        default=4500.0,
+        metadata={
+            "label": "White Balance Temperature (K)",
+            "group": "White Balance",
+            "ui": "number",
+            "min": 2800,
+            "max": 6500,
+            "step": 10,
+        },
+    )
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "USBCameraConfig":
         return cls(
             device_index=data.get("device_index", 0),
             format=data.get("format", "MJPG"),
-            width=data.get("width", 640),
-            height=data.get("height", 480),
+            width=data.get("width", 1280),
+            height=data.get("height", 720),
             fps=data.get("fps", 30),
             auto_exposure=data.get("auto_exposure", True),
-            exposure=data.get("exposure", 0.0),
-            gain=data.get("gain", 0.0),
+            exposure=data.get("exposure", -6.0),
+            gain=data.get("gain", 1.0),
             auto_focus=data.get("auto_focus", True),
             focus=data.get("focus", 0.0),
             auto_white_balance=data.get("auto_white_balance", True),
-            white_balance_temperature=data.get("white_balance_temperature", 0.0),
+            white_balance_temperature=data.get("white_balance_temperature", 4500.0),
         )

@@ -1,11 +1,27 @@
 from typing import Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass(slots=True)
 class NAU7802CalibrationConfig:
-    offset: int = 0
-    scale: float = 1.0
+    offset: int = field(
+        default=0,
+        metadata={
+            "label": "Offset",
+            "group": "Calibration",
+            "ui": "number",
+        },
+    )
+
+    scale: float = field(
+        default=1.0,
+        metadata={
+            "label": "Scale Factor",
+            "group": "Calibration",
+            "ui": "number",
+            "step": 0.0001,
+        },
+    )
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "NAU7802CalibrationConfig":
@@ -17,7 +33,7 @@ class NAU7802CalibrationConfig:
 
 @dataclass(slots=True)
 class NAU7802ChannelConfig:
-    calibration: NAU7802CalibrationConfig
+    calibration: NAU7802CalibrationConfig = field(metadata={"group": "Channels"})
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "NAU7802ChannelConfig":
@@ -28,9 +44,29 @@ class NAU7802ChannelConfig:
 
 @dataclass(slots=True)
 class NAU7802Config:
-    bus_id: str
-    channels: dict[str, NAU7802ChannelConfig]
-    addr: int = 0x2A
+    bus_id: str = field(
+        metadata={
+            "label": "I²C Bus",
+            "group": "Connection",
+            "ui": "bus",
+        }
+    )
+
+    addr: int = field(
+        default=0x2A,
+        metadata={
+            "label": "I²C Address",
+            "group": "Connection",
+            "ui": "hex",
+            "min": 0,
+            "max": 127,
+        },
+    )
+
+    channels: dict[str, NAU7802ChannelConfig] = field(
+        default_factory=dict,
+        metadata={"group": "Channels"},
+    )
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "NAU7802Config":

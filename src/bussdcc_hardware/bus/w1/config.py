@@ -1,10 +1,17 @@
 from typing import Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass(slots=True)
 class W1BusConfig:
-    base_path: str = "/sys/bus/w1/devices"
+    base_path: str = field(
+        default="/sys/bus/w1/devices",
+        metadata={
+            "label": "Base Path",
+            "group": "Connection",
+            "ui": "path",
+        },
+    )
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "W1BusConfig":
