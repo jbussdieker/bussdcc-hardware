@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.14.1...v0.15.0) (2026-03-09)
+
+
+### Features
+
+* **device:** enhance error handling and update dependencies ([49191d9](https://github.com/jbussdieker/bussdcc-hardware/commit/49191d9792808e1a95528be93f97cbf895d9f767))
+
 ## [0.14.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.14.0...v0.14.1) (2026-03-08)
 
 
