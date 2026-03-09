@@ -4,9 +4,9 @@ dynamic = [
     "version",
 ]
 dependencies = [
-    "bussdcc ~= 0.36.0",
+    "bussdcc ~= 0.37.0",
 ]
-description = "Hardware device integrations for the BussDCC cybernetic runtime"
+description = "Provides hardware device integrations for bussdcc."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
