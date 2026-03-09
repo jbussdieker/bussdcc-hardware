@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.15.0...v0.15.1) (2026-03-09)
+
+
+### Bug Fixes
+
+* **device:** handle missing device path in DS18B20 driver ([7e362f7](https://github.com/jbussdieker/bussdcc-hardware/commit/7e362f7f516a86d6d6e8500d61ebfd31787698fc))
+
 ## [0.15.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.14.1...v0.15.0) (2026-03-09)
 
 
