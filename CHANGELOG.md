@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.15.1...v0.16.0) (2026-03-09)
+
+
+### Features
+
+* **config:** enhance dataclass configurations with metadata ([5d35eda](https://github.com/jbussdieker/bussdcc-hardware/commit/5d35eda71b9bb8bc49411658f492ec0843baf529))
+
 ## [0.15.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.15.0...v0.15.1) (2026-03-09)
 
 
