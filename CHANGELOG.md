@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.1](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.16.0...v0.16.1) (2026-03-09)
+
+
+### Documentation
+
+* **readme:** update and expand documentation ([f9fcfcb](https://github.com/jbussdieker/bussdcc-hardware/commit/f9fcfcba82780b9c7dcb6aeddbb855fe8e445ec7))
+
 ## [0.16.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.15.1...v0.16.0) (2026-03-09)
 
 
