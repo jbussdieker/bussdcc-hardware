@@ -24,6 +24,8 @@ class DS18B20(Device[DS18B20Config]):
             raise RuntimeError("Failed to find W1Bus")
 
         self._device_path = bus.device_path(self.config.device_id)
+        if not self._device_path.exists():
+            raise RuntimeError("Failed to find device")
 
     def read(self) -> float | None:
         if not self._device_path:
