@@ -154,6 +154,7 @@ class USBCamera(Device[USBCameraConfig]):
             if not self.cap or not self.cap.isOpened():
                 self._consecutive_failures += 1
                 self._maybe_recover()
+                self.set_offline()
                 return False, None, {}
 
             ret, frame = self.cap.read()
@@ -161,6 +162,7 @@ class USBCamera(Device[USBCameraConfig]):
         if not ret:
             self._consecutive_failures += 1
             self._maybe_recover()
+            self.set_offline()
             return False, None, {}
 
         # success path
@@ -170,4 +172,5 @@ class USBCamera(Device[USBCameraConfig]):
             "time": self.ctx.clock.now_utc().isoformat() if self.ctx else None,
         }
 
+        self.set_online()
         return ret, frame, metadata

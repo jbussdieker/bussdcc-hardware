@@ -33,7 +33,15 @@ class DS18B20(Device[DS18B20Config]):
 
         try:
             value = temp_file.read_text().strip()
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            self.set_offline(e)
             return None
 
-        return float(value) / 1000
+        try:
+            temp = float(value) / 1000
+        except ValueError as e:
+            self.set_offline(e)
+            return None
+
+        self.set_online()
+        return temp

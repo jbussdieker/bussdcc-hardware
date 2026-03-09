@@ -56,11 +56,11 @@ class NAU7802(Device[NAU7802Config]):
                 return False
         return True
 
-    def _switch_channel(self, channel: Literal[1, 2]) -> None:
+    def _switch_channel(self, channel: Literal[1, 2]) -> bool:
         if not self.ctx:
-            return
+            return False
         if self._current_channel == channel:
-            return
+            return True
 
         self.device.set_channel(channel)
 
@@ -74,12 +74,23 @@ class NAU7802(Device[NAU7802Config]):
                         error="timeout changing channels",
                     )
                 )
+                return False
             self.device.adco
 
         self._current_channel = channel
+        return True
 
-    def read(self, channel: Literal[1, 2]) -> int:
-        self._switch_channel(channel)
+    def read(self, channel: Literal[1, 2]) -> int | None:
+        if not self._switch_channel(channel):
+            self.set_offline()
+            return None
 
         with self._lock:
-            return self.device.adco.value
+            try:
+                value = self.device.adco.value
+            except Exception as e:
+                self.set_offline(e)
+                return None
+
+        self.set_online()
+        return value
