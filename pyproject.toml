@@ -35,11 +35,12 @@ license = "MIT"
 [project.entry-points."bussdcc.bus"]
 i2c = "bussdcc_hardware.bus.i2c:definition"
 w1 = "bussdcc_hardware.bus.w1:definition"
+gpio = "bussdcc_hardware.bus.gpio:definition"
 
 [project.entry-points."bussdcc.device"]
 ds18b20 = "bussdcc_hardware.device.ds18b20:definition"
 nau7802 = "bussdcc_hardware.device.nau7802:definition"
-pump = "bussdcc_hardware.device.pump:definition"
+digital_output = "bussdcc_hardware.device.digital_output:definition"
 usb_camera = "bussdcc_hardware.device.usb_camera:definition"
 
 [project.optional-dependencies]
@@ -48,7 +49,7 @@ dev = [
     "types.RPi.GPIO ~= 0.7.0",
 ]
 nau7802 = ["nau7802[i2c] ~= 0.6.0"]
-pump = ["RPi.GPIO ~= 0.7.1"]
+digital_output = ["RPi.GPIO ~= 0.7.1"]
 usb_camera = ["opencv-python-headless ~= 4.13.0.92"]
 
 [project.urls]

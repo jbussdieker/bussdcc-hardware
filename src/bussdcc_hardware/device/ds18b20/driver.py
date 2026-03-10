@@ -1,4 +1,3 @@
-from typing import Optional, Any
 from pathlib import Path
 
 from bussdcc.device import Device

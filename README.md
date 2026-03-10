@@ -12,7 +12,8 @@ Hardware in BussDCC is modeled using **devices attached to buses**.
 Runtime
   ├── Bus Devices
   │     ├── I2C Bus
-  │     └── 1-Wire Bus
+  │     ├── 1-Wire Bus
+  │     └── GPIO Bus
   │
   └── Hardware Devices
         ├── Sensors
@@ -111,12 +112,12 @@ Features:
 * white balance control
 * automatic failure recovery
 
-### GPIO Pump
+### Digital Output
 
-Simple actuator using Raspberry Pi GPIO.
+Simple GPIO-based actuator for controlling devices such as pumps, relays, LEDs, or lights.
 
 ```
-bussdcc_hardware.device.pump
+bussdcc_hardware.device.digital_output
 ```
 
 Features:
@@ -188,7 +189,7 @@ Install them using extras:
 
 ```
 pip install bussdcc-hardware[nau7802]
-pip install bussdcc-hardware[pump]
+pip install bussdcc-hardware[digital_output]
 pip install bussdcc-hardware[usb_camera]
 ```
 
@@ -249,7 +250,7 @@ Optional drivers:
 
 ```
 pip install bussdcc-hardware[nau7802]
-pip install bussdcc-hardware[pump]
+pip install bussdcc-hardware[digital_output]
 pip install bussdcc-hardware[usb_camera]
 ```
 

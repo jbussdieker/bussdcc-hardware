@@ -3,7 +3,15 @@ from dataclasses import dataclass, field
 
 
 @dataclass(slots=True)
-class PumpConfig:
+class DigitalOutputConfig:
+    bus_id: str = field(
+        metadata={
+            "label": "GPIO Bus",
+            "group": "Connection",
+            "ui": "bus",
+        }
+    )
+
     pin: int = field(
         metadata={
             "label": "GPIO Output Pin",
@@ -15,5 +23,5 @@ class PumpConfig:
     )
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "PumpConfig":
-        return cls(pin=data["pin"])
+    def from_dict(cls, data: dict[str, Any]) -> "DigitalOutputConfig":
+        return cls(bus_id=data["bus_id"], pin=data["pin"])

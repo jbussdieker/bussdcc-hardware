@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional
 from pathlib import Path
 
 import smbus2
