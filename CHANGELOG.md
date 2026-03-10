@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.18.0...v0.19.0) (2026-03-10)
+
+
+### Features
+
+* add GPIO bus and digital_output device with protocol abstraction ([b4fa818](https://github.com/jbussdieker/bussdcc-hardware/commit/b4fa81889fb1509e492705f4fa795f99c3611a78))
+* **digital_output:** enhance configuration and state management ([84bcb3a](https://github.com/jbussdieker/bussdcc-hardware/commit/84bcb3a5438e8d5bd4d79d9a0a13ca55d70db631))
+
 ## [0.18.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.17.0...v0.18.0) (2026-03-10)
 
 
