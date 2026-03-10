@@ -16,14 +16,14 @@ class DigitalOutput(Device[DigitalOutputConfig]):
 
     def _level(self, state: bool) -> Literal[0, 1]:
         """Logical -> electrical"""
-        if self.config.active_high:
+        if self.config.logic == "active_high":
             return 1 if state else 0
         else:
             return 0 if state else 1
 
     def _logical(self, level: int) -> bool:
         """Electrical -> logical"""
-        if self.config.active_high:
+        if self.config.logic == "active_high":
             return level == 1
         else:
             return level == 0

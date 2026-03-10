@@ -2,6 +2,7 @@ from typing import Any, Literal
 from dataclasses import dataclass, field
 
 SafeState = Literal["off", "on"]
+Logic = Literal["active_high", "active_low"]
 
 
 @dataclass(slots=True)
@@ -24,12 +25,14 @@ class DigitalOutputConfig:
         },
     )
 
-    active_high: bool = field(
-        default=True,
+    logic: Logic = field(
+        default="active_high",
         metadata={
-            "label": "Active High",
-            "group": "Hardware",
-            "help": "If false, the output is active-low",
+            "label": "Logic Level",
+            "group": "Behavior",
+            "ui": "select",
+            "options": ["active_high", "active_low"],
+            "help": "Determines whether the device is active when the pin is HIGH or LOW",
         },
     )
 
@@ -49,6 +52,6 @@ class DigitalOutputConfig:
         return cls(
             bus_id=data["bus_id"],
             pin=data["pin"],
-            active_high=data.get("active_high", True),
+            logic=data.get("logic", "active_high"),
             safe_state=data.get("safe_state", "off"),
         )
