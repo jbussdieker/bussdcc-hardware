@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Literal
 from dataclasses import dataclass, field
 
 
@@ -15,7 +15,7 @@ class USBCameraConfig:
         },
     )
 
-    format: str = field(
+    format: Literal["MJPG", "YUYV"] = field(
         default="MJPG",
         metadata={
             "label": "Pixel Format",
