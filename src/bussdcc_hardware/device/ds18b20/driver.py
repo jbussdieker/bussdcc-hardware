@@ -2,7 +2,7 @@ from pathlib import Path
 
 from bussdcc.device import Device
 
-from ...bus.w1 import W1Bus
+from ...bus.w1.driver import W1Bus
 
 from .config import DS18B20Config
 

@@ -1,9 +1,7 @@
 from .config import GPIOBusConfig
-from .driver import GPIOBus
-from .definition import definition
+from .interface import GPIOInterface
 
 __all__ = [
     "GPIOBusConfig",
-    "GPIOBus",
-    "definition",
+    "GPIOInterface",
 ]

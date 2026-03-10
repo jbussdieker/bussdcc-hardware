@@ -6,7 +6,7 @@ from bussdcc.message import DeviceFailed
 from nau7802 import NAU7802 as _NAU7802
 from typed_registers import SMBusRegisterBus
 
-from ...bus.i2c import I2CBus
+from ...bus.i2c.driver import I2CBus
 from .config import NAU7802Config
 
 Channel = Literal[1, 2]
