@@ -65,7 +65,7 @@ class USBCamera(Device[USBCameraConfig]):
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.config.width)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.config.height)
         self.cap.set(cv2.CAP_PROP_FPS, self.config.fps)
-        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, self.config.buffersize)
 
         if self.config.auto_focus:
             self.cap.set(cv2.CAP_PROP_AUTOFOCUS, 1.0)
@@ -149,28 +149,40 @@ class USBCamera(Device[USBCameraConfig]):
             self.cap.release()
         self.cap = None
 
-    def read(self) -> tuple[bool, Any | None, dict[str, Any]]:
+    def read(self) -> tuple[bool, Any | None, dict[str, Any] | None]:
         with self._lock:
-            if not self.cap or not self.cap.isOpened():
+            if self.cap is None or not self.cap.isOpened():
                 self._consecutive_failures += 1
                 self._maybe_recover()
-                self.set_offline()
-                return False, None, {}
+                return False, None, None
 
-            ret, frame = self.cap.read()
+            # flush stale frames to reduce latency
+            for _ in range(self.config.flush_frames):
+                self.cap.grab()
 
-        if not ret:
-            self._consecutive_failures += 1
-            self._maybe_recover()
-            self.set_offline()
-            return False, None, {}
+            # grab new frame
+            if not self.cap.grab():
+                self._consecutive_failures += 1
+                self._maybe_recover()
+                return False, None, None
 
-        # success path
-        self._consecutive_failures = 0
+            # timestamp immediately after grabbing
+            t = self.ctx.clock.now_utc() if self.ctx else None
 
-        metadata = {
-            "time": self.ctx.clock.now_utc().isoformat() if self.ctx else None,
-        }
+            # retrieve the frame
+            ok, frame = self.cap.retrieve()
+            if not ok:
+                self._consecutive_failures += 1
+                self._maybe_recover()
+                return False, None, None
 
-        self.set_online()
-        return ret, frame, metadata
+            # success, reset failure count
+            self._consecutive_failures = 0
+            self.set_online()
+
+            metadata = {
+                "time": t.isoformat() if t else None,
+                "device": self.id,
+            }
+
+            return True, frame, metadata

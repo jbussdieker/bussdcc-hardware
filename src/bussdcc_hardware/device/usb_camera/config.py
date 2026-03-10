@@ -129,6 +129,32 @@ class USBCameraConfig:
         },
     )
 
+    buffersize: int = field(
+        default=1,
+        metadata={
+            "label": "Buffer Size",
+            "group": "Video",
+            "ui": "number",
+            "help": "Number of frames the driver buffers internally (OpenCV CAP_PROP_BUFFERSIZE)",
+            "min": 1,
+            "max": 16,
+            "step": 1,
+        },
+    )
+
+    flush_frames: int = field(
+        default=0,
+        metadata={
+            "label": "Frames to Flush",
+            "group": "Video",
+            "ui": "number",
+            "help": "Number of stale frames to discard on each read to reduce latency",
+            "min": 0,
+            "max": 16,
+            "step": 1,
+        },
+    )
+
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "USBCameraConfig":
         return cls(
@@ -144,4 +170,6 @@ class USBCameraConfig:
             focus=data.get("focus", 0.0),
             auto_white_balance=data.get("auto_white_balance", True),
             white_balance_temperature=data.get("white_balance_temperature", 4500.0),
+            buffersize=data.get("buffersize", 1),
+            flush_frames=data.get("flush_frames", 0),
         )
