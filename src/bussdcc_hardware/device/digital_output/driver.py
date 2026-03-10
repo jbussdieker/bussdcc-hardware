@@ -1,8 +1,7 @@
 from typing import Literal
 from bussdcc.device import Device
 
-from ...bus.gpio import GPIOBus
-from ...bus.gpio.protocol import GPIOProtocol
+from ...bus.gpio import GPIOInterface
 
 from .config import DigitalOutputConfig
 
@@ -12,7 +11,7 @@ class DigitalOutput(Device[DigitalOutputConfig]):
 
     def __init__(self, *, id: str, config: DigitalOutputConfig):
         super().__init__(id=id, config=config)
-        self.gpio: GPIOProtocol | None = None
+        self.gpio: GPIOInterface | None = None
 
     def _level(self, state: bool) -> Literal[0, 1]:
         """Logical -> electrical"""
@@ -42,8 +41,10 @@ class DigitalOutput(Device[DigitalOutputConfig]):
 
         bus = self.ctx.runtime.devices.get(self.config.bus_id)
 
-        if not isinstance(bus, GPIOBus):
-            raise RuntimeError("DigitalOutput requires GPIOBus")
+        if not isinstance(bus, GPIOInterface):
+            raise RuntimeError(
+                "DigitalOutput requires a bus that supports GPIOInterface"
+            )
 
         self.gpio = bus.protocol()
 

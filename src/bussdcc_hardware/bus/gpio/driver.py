@@ -5,13 +5,13 @@ import RPi.GPIO as GPIO
 from bussdcc.device import Device
 
 from .config import GPIOBusConfig, PinMode
-from .protocol import GPIOProtocol, PinDirection, Pull, Level
+from .interface import GPIOInterface, PinDirection, Pull, Level
 
 GPIOMode = Literal[10, 11]
 GPIODirection = Literal[0, 1]
 
 
-class GPIOBus(Device[GPIOBusConfig], GPIOProtocol):
+class GPIOBus(Device[GPIOBusConfig], GPIOInterface):
     kind = "bus"
 
     MODE_MAP: dict[PinMode, GPIOMode] = {
@@ -37,7 +37,7 @@ class GPIOBus(Device[GPIOBusConfig], GPIOProtocol):
     def disconnect(self) -> None:
         GPIO.cleanup()
 
-    def protocol(self) -> GPIOProtocol:
+    def protocol(self) -> GPIOInterface:
         return self
 
     def setup(
