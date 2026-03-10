@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.18.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.17.0...v0.18.0) (2026-03-10)
+
+
+### Features
+
+* **nau7802:** enhance configuration and reading capabilities ([5dca456](https://github.com/jbussdieker/bussdcc-hardware/commit/5dca45686febdaac3e37a02964f046f4ed5cf2e9))
+* **usb_camera:** add buffer size and frame flushing configuration ([f857b99](https://github.com/jbussdieker/bussdcc-hardware/commit/f857b99943499895849225fa5bc24eec17c9101c))
+
 ## [0.17.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.16.1...v0.17.0) (2026-03-10)
 
 
