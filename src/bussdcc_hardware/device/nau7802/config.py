@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Literal
 from dataclasses import dataclass, field
 
 
@@ -63,7 +63,49 @@ class NAU7802Config:
         },
     )
 
-    channels: dict[str, NAU7802ChannelConfig] = field(
+    gain: Literal[1, 2, 4, 8, 16, 32, 64, 128] = field(
+        default=128,
+        metadata={
+            "label": "Gain",
+            "group": "ADC",
+            "ui": "select",
+            "options": [1, 2, 4, 8, 16, 32, 64, 128],
+        },
+    )
+
+    sample_rate: Literal[10, 20, 40, 80, 320] = field(
+        default=10,
+        metadata={
+            "label": "Sample Rate (SPS)",
+            "group": "ADC",
+            "ui": "select",
+            "options": [10, 20, 40, 80, 320],
+        },
+    )
+
+    samples: int = field(
+        default=1,
+        metadata={
+            "label": "Samples per Reading",
+            "group": "Performance",
+            "ui": "number",
+            "min": 1,
+            "max": 64,
+        },
+    )
+
+    discard_samples: int = field(
+        default=8,
+        metadata={
+            "label": "Discard Samples After Channel Switch",
+            "group": "Performance",
+            "ui": "number",
+            "min": 0,
+            "max": 32,
+        },
+    )
+
+    channels: dict[int, NAU7802ChannelConfig] = field(
         default_factory=dict,
         metadata={"group": "Channels"},
     )
@@ -71,12 +113,16 @@ class NAU7802Config:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "NAU7802Config":
         channels = {
-            str(k): NAU7802ChannelConfig.from_dict(v)
+            int(k): NAU7802ChannelConfig.from_dict(v)
             for k, v in data.get("channels", {}).items()
         }
 
         return cls(
             bus_id=data["bus_id"],
             addr=data.get("addr", 0x2A),
+            gain=data.get("gain", 128),
+            sample_rate=data.get("sample_rate", 10),
+            samples=data.get("samples", 1),
+            discard_samples=data.get("discard_samples", 8),
             channels=channels,
         )
