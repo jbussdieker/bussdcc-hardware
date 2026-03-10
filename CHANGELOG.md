@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.19.0...v0.20.0) (2026-03-10)
+
+
+### Features
+
+* **usb_camera:** use Literal type for format field in USBCameraConfig ([b51d815](https://github.com/jbussdieker/bussdcc-hardware/commit/b51d81562b9c54b8ef204b7510ce5afd426b7ab2))
+
 ## [0.19.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.18.0...v0.19.0) (2026-03-10)
 
 
