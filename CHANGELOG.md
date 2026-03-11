@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.20.0...v0.21.0) (2026-03-11)
+
+
+### Features
+
+* **project:** update Device import paths and bump bussdcc dependency ([b7e8ef6](https://github.com/jbussdieker/bussdcc-hardware/commit/b7e8ef6363d33e663d26ef311a8db56bcfa0f26a))
+
 ## [0.20.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.19.0...v0.20.0) (2026-03-10)
 
 
