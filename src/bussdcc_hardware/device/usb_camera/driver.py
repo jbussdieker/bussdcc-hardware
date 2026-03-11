@@ -3,7 +3,7 @@ import threading
 
 import cv2
 
-from bussdcc.device import Device
+from bussdcc import Device
 
 from .config import USBCameraConfig
 

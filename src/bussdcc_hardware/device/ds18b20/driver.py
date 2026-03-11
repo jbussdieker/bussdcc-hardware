@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from bussdcc.device import Device
+from bussdcc import Device
 
 from ...bus.w1.driver import W1Bus
 

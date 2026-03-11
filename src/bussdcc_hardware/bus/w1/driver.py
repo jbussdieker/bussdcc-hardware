@@ -1,7 +1,7 @@
 from typing import Iterable, Optional, Any
 from pathlib import Path
 
-from bussdcc.device import Device
+from bussdcc import Device
 
 from .config import W1BusConfig
 

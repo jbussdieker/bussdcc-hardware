@@ -2,7 +2,7 @@ from typing import Literal
 
 import RPi.GPIO as GPIO
 
-from bussdcc.device import Device
+from bussdcc import Device
 
 from .config import GPIOBusConfig, PinMode
 from .interface import GPIOInterface, PinDirection, Pull, Level

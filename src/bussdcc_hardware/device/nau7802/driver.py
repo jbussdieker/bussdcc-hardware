@@ -1,7 +1,7 @@
 from typing import Literal, Any
 import threading
 
-from bussdcc.device import Device
+from bussdcc import Device
 from bussdcc.message import DeviceFailed
 from nau7802 import NAU7802 as _NAU7802
 from typed_registers import SMBusRegisterBus

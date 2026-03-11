@@ -4,7 +4,7 @@ from pathlib import Path
 import smbus2
 from typed_registers import SMBusRegisterBus
 
-from bussdcc.device import Device
+from bussdcc import Device
 
 from .config import I2CBusConfig
 

@@ -1,5 +1,6 @@
 from typing import Literal
-from bussdcc.device import Device
+
+from bussdcc import Device
 
 from ...bus.gpio import GPIOInterface
 
