@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.21.0...v0.22.0) (2026-03-16)
+
+
+### Features
+
+* **project:** update bussdcc dependency and modify USB camera config handling ([016c39a](https://github.com/jbussdieker/bussdcc-hardware/commit/016c39a7161cc6e0687f8bb844b7bbb0eef1c0f9))
+
 ## [0.21.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.20.0...v0.21.0) (2026-03-11)
 
 
