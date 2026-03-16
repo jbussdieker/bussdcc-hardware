@@ -129,7 +129,7 @@ class USBCamera(Device[USBCameraConfig]):
             if self.config.format != new_config.format:
                 reconnect = True
 
-            self.config = new_config
+            self._config = new_config
             if self.cap and self.cap.isOpened():
                 if reconnect:
                     self.cap.release()
