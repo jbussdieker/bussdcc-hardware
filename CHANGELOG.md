@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.22.0...v0.23.0) (2026-03-21)
+
+
+### Features
+
+* **project:** add BlueZ adapter support ([d6635c9](https://github.com/jbussdieker/bussdcc-hardware/commit/d6635c92cd6c1ce88ad91c3a4700c92c3f6937cb))
+
 ## [0.22.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.21.0...v0.22.0) (2026-03-16)
 
 
