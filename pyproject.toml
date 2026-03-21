@@ -42,6 +42,7 @@ ds18b20 = "bussdcc_hardware.device.ds18b20.definition:definition"
 nau7802 = "bussdcc_hardware.device.nau7802.definition:definition"
 digital_output = "bussdcc_hardware.device.digital_output.definition:definition"
 usb_camera = "bussdcc_hardware.device.usb_camera.definition:definition"
+bluez_adapter = "bussdcc_hardware.device.bluez_adapter.definition:definition"
 
 [project.optional-dependencies]
 dev = [
