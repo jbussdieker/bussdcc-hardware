@@ -1,3 +1,4 @@
+from functools import lru_cache
 from typing import Any
 
 from bussdcc import Device
@@ -27,50 +28,64 @@ class BlueZAdapter(Device[BlueZAdapterConfig], BlueZAdapterInterface):
         super().__init__(id=id, config=config)
         self._bus: dbus.SystemBus | None = None
         self._adapter_path: str | None = None
-        self._interfaces: dict[str, Any] = {}
 
     def connect(self) -> None:
         self._bus = dbus.SystemBus()
-
         path = f"/org/bluez/{self.config.adapter}"
-        obj = self._bus.get_object(BLUEZ_SERVICE_NAME, "/")
-        om = dbus.Interface(obj, DBUS_OM_IFACE)
-        objects = om.GetManagedObjects()
+
+        objects = self._object_manager().GetManagedObjects()
 
         if path not in objects:
             raise RuntimeError(f"BlueZ adapter not found: {self.config.adapter}")
 
-        interfaces = objects[path]
-        if ADAPTER_IFACE not in interfaces:
+        if ADAPTER_IFACE not in objects[path]:
             raise RuntimeError(f"Path is not a BlueZ adapter: {path}")
 
         self._adapter_path = path
-        self._interfaces = dict(interfaces)
+        self._clear_caches()
 
     def disconnect(self) -> None:
-        self._interfaces = {}
+        self._clear_caches()
         self._adapter_path = None
         self._bus = None
 
     def protocol(self) -> BlueZAdapterInterface:
         return self
 
-    def adapter_path(self) -> str:
+    @property
+    def bus(self) -> dbus.SystemBus:
+        if self._bus is None:
+            raise RuntimeError("BlueZ adapter not connected")
+        return self._bus
+
+    @property
+    def path(self) -> str:
         if self._adapter_path is None:
             raise RuntimeError("BlueZ adapter not connected")
         return self._adapter_path
 
-    def has_advertising_manager(self) -> bool:
-        return LE_ADVERTISING_MANAGER_IFACE in self._interfaces
+    @property
+    def advertising_manager(self) -> Any:
+        return self._interface(LE_ADVERTISING_MANAGER_IFACE)
 
-    def has_gatt_manager(self) -> bool:
-        return GATT_MANAGER_IFACE in self._interfaces
+    @property
+    def gatt_manager(self) -> Any:
+        return self._interface(GATT_MANAGER_IFACE)
 
-    def status(self) -> dict[str, Any]:
-        return {
-            "device": self.id,
-            "adapter": self.config.adapter,
-            "path": self._adapter_path,
-            "advertising_manager": self.has_advertising_manager(),
-            "gatt_manager": self.has_gatt_manager(),
-        }
+    def _clear_caches(self) -> None:
+        self._object_manager.cache_clear()
+        self._adapter_object.cache_clear()
+        self._interface.cache_clear()
+
+    @lru_cache(maxsize=1)
+    def _object_manager(self) -> Any:
+        obj = self.bus.get_object(BLUEZ_SERVICE_NAME, "/")
+        return dbus.Interface(obj, DBUS_OM_IFACE)
+
+    @lru_cache(maxsize=1)
+    def _adapter_object(self) -> Any:
+        return self.bus.get_object(BLUEZ_SERVICE_NAME, self.path)
+
+    @lru_cache(maxsize=None)
+    def _interface(self, name: str) -> Any:
+        return dbus.Interface(self._adapter_object(), name)
