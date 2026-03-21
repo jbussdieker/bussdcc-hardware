@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.23.0...v0.24.0) (2026-03-21)
+
+
+### Features
+
+* **bluez_adapter:** enhance BlueZ adapter with caching and properties ([7e64490](https://github.com/jbussdieker/bussdcc-hardware/commit/7e6449064aa32c9d74f7ef7a5ff81f57adad4a8f))
+
 ## [0.23.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.22.0...v0.23.0) (2026-03-21)
 
 
