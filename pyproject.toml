@@ -36,9 +36,11 @@ license = "MIT"
 i2c = "bussdcc_hardware.bus.i2c.definition:definition"
 w1 = "bussdcc_hardware.bus.w1.definition:definition"
 gpio = "bussdcc_hardware.bus.gpio.definition:definition"
+mock_gpio = "bussdcc_hardware.bus.mock_gpio.definition:definition"
 
 [project.entry-points."bussdcc.device"]
 ds18b20 = "bussdcc_hardware.device.ds18b20.definition:definition"
+mock_temperature = "bussdcc_hardware.device.mock_temperature.definition:definition"
 nau7802 = "bussdcc_hardware.device.nau7802.definition:definition"
 digital_output = "bussdcc_hardware.device.digital_output.definition:definition"
 usb_camera = "bussdcc_hardware.device.usb_camera.definition:definition"
