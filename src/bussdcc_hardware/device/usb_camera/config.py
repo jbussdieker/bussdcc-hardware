@@ -1,4 +1,4 @@
-from typing import Any, Literal
+from typing import Literal
 from dataclasses import dataclass, field
 
 
@@ -154,22 +154,3 @@ class USBCameraConfig:
             "step": 1,
         },
     )
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "USBCameraConfig":
-        return cls(
-            device_index=data.get("device_index", 0),
-            format=data.get("format", "MJPG"),
-            width=data.get("width", 1280),
-            height=data.get("height", 720),
-            fps=data.get("fps", 30),
-            auto_exposure=data.get("auto_exposure", True),
-            exposure=data.get("exposure", -6.0),
-            gain=data.get("gain", 1.0),
-            auto_focus=data.get("auto_focus", True),
-            focus=data.get("focus", 0.0),
-            auto_white_balance=data.get("auto_white_balance", True),
-            white_balance_temperature=data.get("white_balance_temperature", 4500.0),
-            buffersize=data.get("buffersize", 1),
-            flush_frames=data.get("flush_frames", 0),
-        )

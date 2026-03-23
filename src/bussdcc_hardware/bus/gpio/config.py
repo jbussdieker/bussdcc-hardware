@@ -1,4 +1,4 @@
-from typing import Any, Literal
+from typing import Literal
 from dataclasses import dataclass, field
 
 PinMode = Literal["BCM", "BOARD"]
@@ -23,10 +23,3 @@ class GPIOBusConfig:
             "group": "GPIO",
         },
     )
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "GPIOBusConfig":
-        return cls(
-            mode=data.get("mode", "BCM"),
-            warnings=data.get("warnings", False),
-        )

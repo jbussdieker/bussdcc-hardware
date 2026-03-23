@@ -19,7 +19,3 @@ class DS18B20Config:
             "ui": "text",
         }
     )
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "DS18B20Config":
-        return cls(bus_id=data["bus_id"], device_id=data["device_id"])

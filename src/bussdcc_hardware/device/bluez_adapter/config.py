@@ -1,4 +1,3 @@
-from typing import Any
 from dataclasses import dataclass, field
 
 
@@ -13,7 +12,3 @@ class BlueZAdapterConfig:
             "help": "BlueZ adapter name such as hci0",
         },
     )
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "BlueZAdapterConfig":
-        return cls(adapter=data.get("adapter", "hci0"))

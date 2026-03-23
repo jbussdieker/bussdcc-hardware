@@ -1,4 +1,3 @@
-from typing import Any
 from dataclasses import dataclass, field
 
 
@@ -12,7 +11,3 @@ class W1BusConfig:
             "ui": "path",
         },
     )
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "W1BusConfig":
-        return cls(base_path=data.get("base_path", "/sys/bus/w1/devices"))

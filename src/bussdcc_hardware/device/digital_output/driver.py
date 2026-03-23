@@ -42,7 +42,8 @@ class DigitalOutput(Device[DigitalOutputConfig]):
 
         bus = self.ctx.runtime.devices.get(self.config.bus_id)
 
-        if not isinstance(bus, GPIOInterface):
+        protocol = bus.protocol() if hasattr(bus, "protocol") else None
+        if not isinstance(protocol, GPIOInterface):
             raise RuntimeError(
                 "DigitalOutput requires a bus that supports GPIOInterface"
             )

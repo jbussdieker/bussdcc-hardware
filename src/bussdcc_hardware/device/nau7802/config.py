@@ -23,23 +23,10 @@ class NAU7802CalibrationConfig:
         },
     )
 
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "NAU7802CalibrationConfig":
-        return cls(
-            offset=data.get("offset", 0),
-            scale=data.get("scale", 1.0),
-        )
-
 
 @dataclass(slots=True)
 class NAU7802ChannelConfig:
     calibration: NAU7802CalibrationConfig = field(metadata={"group": "Channels"})
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "NAU7802ChannelConfig":
-        return cls(
-            calibration=NAU7802CalibrationConfig.from_dict(data.get("calibration", {}))
-        )
 
 
 @dataclass(slots=True)
@@ -109,20 +96,3 @@ class NAU7802Config:
         default_factory=dict,
         metadata={"group": "Channels"},
     )
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "NAU7802Config":
-        channels = {
-            int(k): NAU7802ChannelConfig.from_dict(v)
-            for k, v in data.get("channels", {}).items()
-        }
-
-        return cls(
-            bus_id=data["bus_id"],
-            addr=data.get("addr", 0x2A),
-            gain=data.get("gain", 128),
-            sample_rate=data.get("sample_rate", 10),
-            samples=data.get("samples", 1),
-            discard_samples=data.get("discard_samples", 8),
-            channels=channels,
-        )

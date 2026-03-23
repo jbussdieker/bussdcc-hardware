@@ -46,12 +46,3 @@ class DigitalOutputConfig:
             "help": "State to enter when device disconnects",
         },
     )
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "DigitalOutputConfig":
-        return cls(
-            bus_id=data["bus_id"],
-            pin=data["pin"],
-            logic=data.get("logic", "active_high"),
-            safe_state=data.get("safe_state", "off"),
-        )
