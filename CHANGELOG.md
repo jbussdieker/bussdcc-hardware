@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.25.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.24.0...v0.25.0) (2026-03-23)
+
+
+### Features
+
+* **mock:** add mock GPIO and temperature devices ([b773794](https://github.com/jbussdieker/bussdcc-hardware/commit/b77379470762ae3d6cb325ccd633d44ae1cc4ec2))
+
+
+### Bug Fixes
+
+* **digital_output:** handle missing bus protocol gracefully ([3a9a007](https://github.com/jbussdieker/bussdcc-hardware/commit/3a9a007023298e84538c352d16b3c6ccfad94760))
+
 ## [0.24.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.23.0...v0.24.0) (2026-03-21)
 
 
