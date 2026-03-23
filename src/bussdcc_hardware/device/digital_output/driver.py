@@ -41,14 +41,13 @@ class DigitalOutput(Device[DigitalOutputConfig]):
             raise RuntimeError("Device not attached")
 
         bus = self.ctx.runtime.devices.get(self.config.bus_id)
-
-        protocol = bus.protocol() if hasattr(bus, "protocol") else None
+        protocol = bus.protocol() if bus and hasattr(bus, "protocol") else None
         if not isinstance(protocol, GPIOInterface):
             raise RuntimeError(
                 "DigitalOutput requires a bus that supports GPIOInterface"
             )
 
-        self.gpio = bus.protocol()
+        self.gpio = protocol
 
         self.gpio.setup(
             self.config.pin,
