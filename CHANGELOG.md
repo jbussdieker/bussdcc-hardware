@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.25.0...v0.26.0) (2026-03-24)
+
+
+### Features
+
+* **config:** update metadata structure and simplify entry points ([ea0ef16](https://github.com/jbussdieker/bussdcc-hardware/commit/ea0ef16e6dfb4172663fb972e65b80f00c0b3824))
+
 ## [0.25.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.24.0...v0.25.0) (2026-03-23)
 
 
