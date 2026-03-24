@@ -32,13 +32,11 @@ keywords = [
 ]
 license = "MIT"
 
-[project.entry-points."bussdcc.bus"]
+[project.entry-points."bussdcc.device"]
 i2c = "bussdcc_hardware.bus.i2c.definition:definition"
 w1 = "bussdcc_hardware.bus.w1.definition:definition"
 gpio = "bussdcc_hardware.bus.gpio.definition:definition"
 mock_gpio = "bussdcc_hardware.bus.mock_gpio.definition:definition"
-
-[project.entry-points."bussdcc.device"]
 ds18b20 = "bussdcc_hardware.device.ds18b20.definition:definition"
 mock_temperature = "bussdcc_hardware.device.mock_temperature.definition:definition"
 nau7802 = "bussdcc_hardware.device.nau7802.definition:definition"

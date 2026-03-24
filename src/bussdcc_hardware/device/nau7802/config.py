@@ -9,7 +9,6 @@ class NAU7802CalibrationConfig:
         metadata={
             "label": "Offset",
             "group": "Calibration",
-            "ui": "number",
         },
     )
 
@@ -18,7 +17,6 @@ class NAU7802CalibrationConfig:
         metadata={
             "label": "Scale Factor",
             "group": "Calibration",
-            "ui": "number",
             "step": 0.0001,
         },
     )
@@ -35,7 +33,7 @@ class NAU7802Config:
         metadata={
             "label": "I²C Bus",
             "group": "Connection",
-            "ui": "bus",
+            "ref": {"kind": "bus"},
         }
     )
 
@@ -44,7 +42,6 @@ class NAU7802Config:
         metadata={
             "label": "I²C Address",
             "group": "Connection",
-            "ui": "hex",
             "min": 0,
             "max": 127,
         },
@@ -55,8 +52,6 @@ class NAU7802Config:
         metadata={
             "label": "Gain",
             "group": "ADC",
-            "ui": "select",
-            "options": [1, 2, 4, 8, 16, 32, 64, 128],
         },
     )
 
@@ -65,8 +60,6 @@ class NAU7802Config:
         metadata={
             "label": "Sample Rate (SPS)",
             "group": "ADC",
-            "ui": "select",
-            "options": [10, 20, 40, 80, 320],
         },
     )
 
@@ -75,7 +68,6 @@ class NAU7802Config:
         metadata={
             "label": "Samples per Reading",
             "group": "Performance",
-            "ui": "number",
             "min": 1,
             "max": 64,
         },
@@ -86,7 +78,6 @@ class NAU7802Config:
         metadata={
             "label": "Discard Samples After Channel Switch",
             "group": "Performance",
-            "ui": "number",
             "min": 0,
             "max": 32,
         },

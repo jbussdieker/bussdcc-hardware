@@ -8,7 +8,6 @@ class I2CBusConfig:
         metadata={
             "label": "I²C Bus Number",
             "group": "Connection",
-            "ui": "number",
             "min": 0,
         },
     )

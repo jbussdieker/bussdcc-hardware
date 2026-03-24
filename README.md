@@ -6,7 +6,7 @@ It includes drivers for common buses and devices and exposes them through the Bu
 
 # Architecture
 
-Hardware in BussDCC is modeled using **devices attached to buses**.
+Hardware in BussDCC is modeled as devices in a dependency graph. Bus devices are one common kind of dependency node.
 
 ```
 Runtime
@@ -144,8 +144,9 @@ Configuration metadata includes UI hints:
 
 * labels
 * groups
-* ranges
-* control types
+* help text
+* numeric constraints
+* dependency references
 
 This allows configuration systems or web interfaces to automatically generate forms.
 
@@ -155,7 +156,6 @@ Example metadata:
 {
   "label": "Frame Width",
   "group": "Video",
-  "ui": "number",
   "min": 160,
   "max": 3840
 }
@@ -166,7 +166,6 @@ Example metadata:
 Hardware integrations are registered using **Python entry points**.
 
 ```
-bussdcc.bus
 bussdcc.device
 ```
 
@@ -175,7 +174,6 @@ The registry loads available devices automatically:
 ```python
 from bussdcc_hardware.registry import registry
 
-registry.buses
 registry.devices
 ```
 
@@ -216,7 +214,7 @@ runtime.add_device(
 )
 ```
 
-The runtime ensures buses are initialized before devices that depend on them.
+The runtime attaches devices in dependency order.
 
 # Design Goals
 

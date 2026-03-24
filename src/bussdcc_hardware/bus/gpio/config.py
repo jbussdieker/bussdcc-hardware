@@ -11,8 +11,6 @@ class GPIOBusConfig:
         metadata={
             "label": "Pin Numbering Mode",
             "group": "GPIO",
-            "ui": "select",
-            "options": ["BCM", "BOARD"],
         },
     )
 

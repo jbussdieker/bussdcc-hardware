@@ -9,7 +9,6 @@ class USBCameraConfig:
         metadata={
             "label": "Camera Device Index",
             "group": "Device",
-            "ui": "number",
             "min": 0,
             "max": 16,
         },
@@ -20,7 +19,6 @@ class USBCameraConfig:
         metadata={
             "label": "Pixel Format",
             "group": "Video",
-            "ui": "select",
         },
     )
 
@@ -29,7 +27,6 @@ class USBCameraConfig:
         metadata={
             "label": "Frame Width",
             "group": "Video",
-            "ui": "number",
             "min": 160,
             "max": 3840,
         },
@@ -40,7 +37,6 @@ class USBCameraConfig:
         metadata={
             "label": "Frame Height",
             "group": "Video",
-            "ui": "number",
             "min": 120,
             "max": 2160,
         },
@@ -51,7 +47,6 @@ class USBCameraConfig:
         metadata={
             "label": "Frames Per Second",
             "group": "Video",
-            "ui": "number",
             "min": 1,
             "max": 120,
         },
@@ -70,7 +65,6 @@ class USBCameraConfig:
         metadata={
             "label": "Exposure",
             "group": "Exposure",
-            "ui": "number",
             "min": -13.0,
             "max": -1.0,
             "step": 0.1,
@@ -83,7 +77,6 @@ class USBCameraConfig:
             "label": "Gain",
             "group": "Exposure",
             "help": "Amplification applied to the sensor signal",
-            "ui": "number",
             "min": 0,
             "max": 16,
             "step": 0.1,
@@ -103,7 +96,6 @@ class USBCameraConfig:
         metadata={
             "label": "Focus",
             "group": "Focus",
-            "ui": "number",
             "min": 0,
             "max": 255,
         },
@@ -122,7 +114,6 @@ class USBCameraConfig:
         metadata={
             "label": "White Balance Temperature (K)",
             "group": "White Balance",
-            "ui": "number",
             "min": 2800,
             "max": 6500,
             "step": 10,
@@ -134,7 +125,6 @@ class USBCameraConfig:
         metadata={
             "label": "Buffer Size",
             "group": "Video",
-            "ui": "number",
             "help": "Number of frames the driver buffers internally (OpenCV CAP_PROP_BUFFERSIZE)",
             "min": 1,
             "max": 16,
@@ -147,7 +137,6 @@ class USBCameraConfig:
         metadata={
             "label": "Frames to Flush",
             "group": "Video",
-            "ui": "number",
             "help": "Number of stale frames to discard on each read to reduce latency",
             "min": 0,
             "max": 16,

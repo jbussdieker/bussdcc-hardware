@@ -8,7 +8,6 @@ class MockTemperatureConfig:
         metadata={
             "label": "Base Temperature",
             "group": "Simulation",
-            "ui": "number",
             "step": 0.1,
         },
     )
@@ -18,7 +17,6 @@ class MockTemperatureConfig:
         metadata={
             "label": "Random Jitter",
             "group": "Simulation",
-            "ui": "number",
             "help": "Maximum random variation added to each reading (+/- jitter)",
             "min": 0.0,
             "step": 0.1,
@@ -30,7 +28,6 @@ class MockTemperatureConfig:
         metadata={
             "label": "Drift Per Second",
             "group": "Simulation",
-            "ui": "number",
             "help": "Linear drift added over time",
             "step": 0.001,
         },
@@ -41,7 +38,6 @@ class MockTemperatureConfig:
         metadata={
             "label": "Minimum Temperature",
             "group": "Simulation",
-            "ui": "number",
             "step": 0.1,
         },
     )
@@ -51,7 +47,6 @@ class MockTemperatureConfig:
         metadata={
             "label": "Maximum Temperature",
             "group": "Simulation",
-            "ui": "number",
             "step": 0.1,
         },
     )

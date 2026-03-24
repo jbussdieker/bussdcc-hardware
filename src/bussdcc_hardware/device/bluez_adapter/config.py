@@ -8,7 +8,6 @@ class BlueZAdapterConfig:
         metadata={
             "label": "Bluetooth Adapter",
             "group": "Connection",
-            "ui": "text",
             "help": "BlueZ adapter name such as hci0",
         },
     )
