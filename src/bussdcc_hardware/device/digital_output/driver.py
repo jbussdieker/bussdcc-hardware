@@ -13,6 +13,7 @@ class DigitalOutput(Device[DigitalOutputConfig]):
     def __init__(self, *, id: str, config: DigitalOutputConfig):
         super().__init__(id=id, config=config)
         self.gpio: GPIOInterface | None = None
+        self._configured = False
 
     def _level(self, state: bool) -> Literal[0, 1]:
         """Logical -> electrical"""
@@ -48,21 +49,25 @@ class DigitalOutput(Device[DigitalOutputConfig]):
             )
 
         self.gpio = protocol
-
         self.gpio.setup(
             self.config.pin,
             "out",
             initial=self._level(False),
         )
+        self._configured = True
 
     def disconnect(self) -> None:
-        if not self.gpio:
-            return
+        try:
+            if not self.gpio or not self._configured:
+                return
 
-        if self.config.safe_state == "on":
-            self.on()
-        else:
-            self.off()
+            if self.config.safe_state == "on":
+                self.on()
+            else:
+                self.off()
+        finally:
+            self._configured = False
+            self.gpio = None
 
     def on(self) -> None:
         if self.gpio:
