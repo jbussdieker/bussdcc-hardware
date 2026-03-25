@@ -39,6 +39,7 @@ gpio = "bussdcc_hardware.bus.gpio.definition:definition"
 mock_gpio = "bussdcc_hardware.bus.mock_gpio.definition:definition"
 ds18b20 = "bussdcc_hardware.device.ds18b20.definition:definition"
 mock_temperature = "bussdcc_hardware.device.mock_temperature.definition:definition"
+bme688 = "bussdcc_hardware.device.bme688.definition:definition"
 nau7802 = "bussdcc_hardware.device.nau7802.definition:definition"
 digital_output = "bussdcc_hardware.device.digital_output.definition:definition"
 usb_camera = "bussdcc_hardware.device.usb_camera.definition:definition"
@@ -49,7 +50,8 @@ dev = [
     "mypy ~= 1.19.1",
     "types.RPi.GPIO ~= 0.7.0",
 ]
-nau7802 = ["nau7802[i2c] ~= 0.6.0"]
+nau7802 = ["nau7802[i2c] ~= 0.7.0"]
+bme688 = ["bme688[i2c] ~= 0.1.0"]
 digital_output = ["RPi.GPIO ~= 0.7.1"]
 usb_camera = ["opencv-python-headless ~= 4.13.0.92"]
 
