@@ -9,5 +9,6 @@ class BlueZAdapterConfig:
             "label": "Bluetooth Adapter",
             "group": "Connection",
             "help": "BlueZ adapter name such as hci0",
+            "required": True,
         },
     )

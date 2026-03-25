@@ -8,6 +8,7 @@ class BME688Config:
             "label": "I²C Bus",
             "group": "Connection",
             "ref": {"kind": "bus"},
+            "required": True,
         }
     )
 

@@ -34,6 +34,7 @@ class NAU7802Config:
             "label": "I²C Bus",
             "group": "Connection",
             "ref": {"kind": "bus"},
+            "required": True,
         }
     )
 

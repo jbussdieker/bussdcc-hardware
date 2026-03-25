@@ -12,6 +12,7 @@ class DigitalOutputConfig:
             "label": "GPIO Bus",
             "group": "Connection",
             "ref": {"kind": "bus"},
+            "required": True,
         }
     )
 

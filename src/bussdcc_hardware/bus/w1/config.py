@@ -8,5 +8,6 @@ class W1BusConfig:
         metadata={
             "label": "Base Path",
             "group": "Connection",
+            "required": True,
         },
     )

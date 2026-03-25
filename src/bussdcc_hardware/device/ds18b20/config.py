@@ -9,6 +9,7 @@ class DS18B20Config:
             "label": "1-Wire Bus",
             "group": "Connection",
             "ref": {"kind": "bus"},
+            "required": True,
         }
     )
 
@@ -16,5 +17,6 @@ class DS18B20Config:
         metadata={
             "label": "Device ID",
             "group": "Connection",
+            "required": True,
         }
     )
