@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.27.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.26.0...v0.27.0) (2026-03-25)
+
+
+### Features
+
+* **bme688:** add BME688 sensor integration ([b9de7ec](https://github.com/jbussdieker/bussdcc-hardware/commit/b9de7ecb6e05dd04395019f8cb2b1756dfb14688))
+
+
+### Bug Fixes
+
+* **digital_output:** ensure proper disconnection and state management ([3993abf](https://github.com/jbussdieker/bussdcc-hardware/commit/3993abfcc07729a7bab8ff8cb4399a763e877bc3))
+
 ## [0.26.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.25.0...v0.26.0) (2026-03-24)
 
 
