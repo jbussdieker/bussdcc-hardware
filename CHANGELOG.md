@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.27.0...v0.28.0) (2026-03-25)
+
+
+### Features
+
+* **config:** enforce required fields in device configurations ([f633f77](https://github.com/jbussdieker/bussdcc-hardware/commit/f633f77e0ffab2a42dc9835e5b8809f5e185d3b1))
+
 ## [0.27.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.26.0...v0.27.0) (2026-03-25)
 
 
