@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.28.0...v0.29.0) (2026-03-26)
+
+
+### Features
+
+* **deps:** update bussdcc dependency to v0.41.0 ([ecfb837](https://github.com/jbussdieker/bussdcc-hardware/commit/ecfb8371f92636066ce67664c6235457eb26098f))
+
 ## [0.28.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.27.0...v0.28.0) (2026-03-25)
 
 
