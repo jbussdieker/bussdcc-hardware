@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.29.0...v0.30.0) (2026-04-14)
+
+
+### Features
+
+* **config:** remove step metadata from NAU7802CalibrationConfig ([3a76ef5](https://github.com/jbussdieker/bussdcc-hardware/commit/3a76ef5f59514c5803e452fffe82d1bb2e944a6f))
+
 ## [0.29.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.28.0...v0.29.0) (2026-03-26)
 
 
