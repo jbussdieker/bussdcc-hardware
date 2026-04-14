@@ -17,7 +17,6 @@ class NAU7802CalibrationConfig:
         metadata={
             "label": "Scale Factor",
             "group": "Calibration",
-            "step": 0.0001,
         },
     )
 
