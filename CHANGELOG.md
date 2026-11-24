@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.32.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.31.0...v0.32.0) (2026-11-24)
+
+
+### Features
+
+* **driver:** introduce WeightMeasurement dataclass for NAU7802 ([e46ad80](https://github.com/jbussdieker/bussdcc-hardware/commit/e46ad8010532395ccada8cfba86db002f4bfa561))
+
 ## [0.31.0](https://github.com/jbussdieker/bussdcc-hardware/compare/v0.30.0...v0.31.0) (2026-04-20)
 
 
