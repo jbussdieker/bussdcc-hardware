@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import Literal, Any
 import threading
 
@@ -10,6 +11,12 @@ from ...bus.i2c.driver import I2CBus
 from .config import NAU7802Config
 
 Channel = Literal[1, 2]
+
+
+@dataclass(frozen=True, slots=True)
+class WeightMeasurement:
+    raw: int
+    grams: float | None
 
 
 class NAU7802(Device[NAU7802Config]):
@@ -164,24 +171,20 @@ class NAU7802(Device[NAU7802Config]):
     # calibrated reading
     # ---------------------------------------------------------
 
-    def read(self, channel: Channel) -> float | None:
+    def read(self, channel: Channel) -> WeightMeasurement | None:
         raw = self.read_raw(channel)
         if raw is None:
             return None
 
-        value = float(raw)
-
         ch = self.config.channels.get(channel)
-        if not ch:
-            return value
+        if ch is None:
+            return WeightMeasurement(raw=raw, grams=None)
 
         cal = ch.calibration
 
-        value -= self._tare[channel]
-        value -= cal.offset
-        value *= cal.scale
+        grams = (raw - self._tare[channel] - cal.offset) * cal.scale
 
-        return float(value)
+        return WeightMeasurement(raw=raw, grams=float(grams))
 
     # ---------------------------------------------------------
     # runtime operations
